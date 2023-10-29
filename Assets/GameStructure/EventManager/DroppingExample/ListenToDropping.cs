@@ -13,11 +13,17 @@ public class ListenToDropping : MonoBehaviour
         
         // subscribe the private Jump function
         eventManager.OnExampleEvent += Jump;
+        eventManager.OnExampleEvent += Log;
     }
     
     void Jump()
     {
         forceValue = Random.Range(100f, 300f);
         GetComponent<Rigidbody>().AddForce(Vector3.up * forceValue);
+    }
+    
+    void Log()
+    {
+        Debug.Log("I am listening to the event");
     }
 }
