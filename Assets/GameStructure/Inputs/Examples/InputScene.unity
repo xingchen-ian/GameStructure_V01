@@ -434,8 +434,9 @@ GameObject:
   - component: {fileID: 1511902587}
   - component: {fileID: 1511902586}
   - component: {fileID: 1511902591}
+  - component: {fileID: 1511902592}
   m_Layer: 0
-  m_Name: CubePlayer
+  m_Name: MouseClickPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +454,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7c97d49a8c147598b75d16c6386ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1511902592}
+        m_TargetAssemblyTypeName: ChangeColors, Assembly-CSharp
+        m_MethodName: ChangeColor1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1511902592}
+        m_TargetAssemblyTypeName: ChangeColors, Assembly-CSharp
+        m_MethodName: ChangeColor2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1511902592}
+        m_TargetAssemblyTypeName: ChangeColors, Assembly-CSharp
+        m_MethodName: ChangeColor3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1511902592}
+        m_TargetAssemblyTypeName: ChangeColors, Assembly-CSharp
+        m_MethodName: ChangeColor4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1511902592}
+        m_TargetAssemblyTypeName: ChangeColors, Assembly-CSharp
+        m_MethodName: ChangeColor5
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1511902587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -548,3 +623,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1511902592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511902585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd0931ddb61448dea0dc18f2f2ea914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 1, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 1, b: 0.19270587, a: 0}
+  color3: {r: 1, g: 0, b: 0.90058327, a: 0}
+  color4: {r: 0.07132578, g: 0, b: 1, a: 0}
+  color5: {r: 1, g: 0.6076495, b: 0, a: 0}
