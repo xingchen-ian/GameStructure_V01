@@ -637,6 +637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color1: {r: 1, g: 0, b: 0, a: 0}
   color2: {r: 0, g: 1, b: 0.19270587, a: 0}
-  color3: {r: 1, g: 0, b: 0.90058327, a: 0}
+  color3: {r: 0, g: 0.52542996, b: 1, a: 0}
   color4: {r: 0.07132578, g: 0, b: 1, a: 0}
   color5: {r: 1, g: 0.6076495, b: 0, a: 0}

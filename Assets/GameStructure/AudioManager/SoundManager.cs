@@ -3,31 +3,31 @@ using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
-    public List<AudioClip> audioClips; // 储存所有的音频剪辑
+    public List<AudioClip> audioClips; // store all the audio clips
 
-    // 播放单一音效
+    // play a single sound effect
     public void PlaySound(int clipIndex)
     {
-        // 创建一个新的Audio Source组件并配置它
+        // create a new Audio Source component and configure it
         AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
         newAudioSource.clip = audioClips[clipIndex];
         
-        // 播放音效
+        // play the sound effect
         newAudioSource.Play();
         
-        // 音效播放完成后，销毁Audio Source组件
+        // destroy the Audio Source component after the sound effect is played
         Destroy(newAudioSource, audioClips[clipIndex].length);
     }
 
-    // 播放背景音乐
+    // play a background music
     public void PlayBackgroundMusic(int clipIndex)
     {
-        // 创建一个新的Audio Source组件并配置它
+        // create a new Audio Source component and configure it
         AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
         newAudioSource.clip = audioClips[clipIndex];
-        newAudioSource.loop = true; // 设置为循环播放
+        newAudioSource.loop = true; // set the background music to loop
 
-        // 播放背景音乐
+        // play the background music
         newAudioSource.Play();
     }
 }

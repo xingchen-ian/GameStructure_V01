@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
-    public Image loadingBar; // 进度条UI元素
-    public float transitionDuration = 1.0f; // 过渡时间
+    public Image loadingBar; // progress bar UI element
+    public float transitionDuration = 1.0f; // progress bar fill duration
 
     private bool isLoading = false;
 
@@ -22,47 +22,47 @@ public class SceneController : MonoBehaviour
     {
         isLoading = true;
 
-        // 播放过渡动画或更新进度条
+        // play transition animation here
         float timer = 0f;
         while (timer < transitionDuration)
         {
-            // 计算进度（0到1之间）
+            // calculate progress ranges from 0 to 1
             float progress = timer / transitionDuration;
 
-            // 更新进度条（假设进度条填充从左到右）
+            // update progress bar (fill amount ranges from 0 to 1 assume the progress bar is a horizontal bar)
             loadingBar.fillAmount = progress;
 
-            // 增加时间
+            // add time
             timer += Time.deltaTime;
 
-            yield return null; // 等待一帧
+            yield return null; // wait for a frame
         }
 
-        // 最终设为1确保进度条填满
+        // ensure the progress bar is filled
         loadingBar.fillAmount = 1.0f;
 
-        // 异步加载新场景
+        // load scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
-        // 阻止加载新场景时自动切换
+        // prevent the scene from activating when loading is complete
         asyncLoad.allowSceneActivation = false;
 
-        // 等待场景加载完成
+        // wait until the scene is fully loaded
         while (!asyncLoad.isDone)
         {
-            // 计算加载进度
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // 进度范围从0到0.9
+            // calculate the progress
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // 0.9f is the maximum progress value
 
-            // 更新进度条
+            // update progress bar
             loadingBar.fillAmount = progress;
 
-            // 如果加载完成，激活新场景
+            // if the loading is almost done, allow the scene to activate
             if (asyncLoad.progress >= 0.9f)
             {
                 asyncLoad.allowSceneActivation = true;
             }
 
-            yield return null; // 等待一帧
+            yield return null; // wait for a frame
         }
 
         isLoading = false;

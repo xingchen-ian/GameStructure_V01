@@ -14,7 +14,7 @@ public class GameStateController : MonoBehaviour
     public Text gameStateText;
     private GameState currentState;
 
-    // Singleton instance
+    // ===== Singleton instance ===== //
     private static GameStateController instance;
 
     public static GameStateController Instance
@@ -47,6 +47,8 @@ public class GameStateController : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    // ===== the end of singleton implementation ===== //
+    
     private void Start()
     {
         InitializeGame();

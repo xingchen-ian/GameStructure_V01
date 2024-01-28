@@ -25,7 +25,7 @@ public class EventManager : MonoBehaviour
     // declare multiple event that you hope to have
     public event Action OnExampleEvent;
     public event Action OnEvent2;
-    // 添加更多事件...
+    // add more events here...
 
     // invoke events
     public void TriggerExampleEvent()

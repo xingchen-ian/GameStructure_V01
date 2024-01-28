@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    // Singleton instance
+    // ===== Singleton instance ===== //
     private static SaveLoadManager instance;
     public static SaveLoadManager Instance
     {
@@ -33,7 +33,10 @@ public class SaveLoadManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
+    
+    // ===== the end of singleton implementation ===== //
 
+    // Save and load functions for each variable you want to save/load
     public void SaveScore(int score)
     {
         // Save the player's score to PlayerPrefs
@@ -50,4 +53,57 @@ public class SaveLoadManager : MonoBehaviour
         }
         return 0; // Default score if no saved score exists
     }
+    
+    public void SaveName(string name)
+    {
+        // Save the player's name to PlayerPrefs
+        PlayerPrefs.SetString("PlayerName", name);
+        PlayerPrefs.Save();
+    }
+    
+    public string LoadName()
+    {
+        // Load the player's name from PlayerPrefs
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            return PlayerPrefs.GetString("PlayerName");
+        }
+        return ""; // Default name if no saved name exists
+    }
+    
+    public void SaveLevel(int level)
+    {
+        // Save the player's level to PlayerPrefs
+        PlayerPrefs.SetInt("PlayerLevel", level);
+        PlayerPrefs.Save();
+    }
+    
+    public int LoadLevel()
+    {
+        // Load the player's level from PlayerPrefs
+        if (PlayerPrefs.HasKey("PlayerLevel"))
+        {
+            return PlayerPrefs.GetInt("PlayerLevel");
+        }
+        return 0; // Default level if no saved level exists
+    }
+    
+    public void SaveHealth(int health)
+    {
+        // Save the player's health to PlayerPrefs
+        PlayerPrefs.SetInt("PlayerHealth", health);
+        PlayerPrefs.Save();
+    }
+    
+    public int LoadHealth()
+    {
+        // Load the player's health from PlayerPrefs
+        if (PlayerPrefs.HasKey("PlayerHealth"))
+        {
+            return PlayerPrefs.GetInt("PlayerHealth");
+        }
+        return 0; // Default health if no saved health exists
+    }
+    
+    // Add more save/load functions for more variables here...
 }
