@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,12 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (!IsSceneInBuildSettings(sceneName))
+        {
+            Debug.LogWarning("The Scene you are trying to load doesn't exist! Please double check!");
+            return;
+        }
+        
         if (!isLoading)
         {
             StartCoroutine(LoadSceneAsyncWithTransition(sceneName));
@@ -66,5 +73,20 @@ public class SceneController : MonoBehaviour
         }
 
         isLoading = false;
+    }
+    
+    public static bool IsSceneInBuildSettings(string sceneName) //check if the scene exists. Return false if it doesn't
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneNameInBuild = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+    
+            if (sceneNameInBuild.Equals(sceneName, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
