@@ -3,47 +3,48 @@ using UnityEngine.UI;
 
 public enum GameState
 {
-    Start,
-    Playing,
-    Paused,
-    GameOver
+    State00,
+    State01,
+    State02,
+    State03,
+    State04
 }
 
 public class GameStateController : MonoBehaviour
 {
     public Text gameStateText;
-    private GameState currentState;
+    private GameState _currentState;
 
     // ===== Singleton instance ===== //
-    private static GameStateController instance;
+    private static GameStateController _instance;
 
     public static GameStateController Instance
     {
         get
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = FindObjectOfType<GameStateController>();
-                if (instance == null)
+                _instance = FindObjectOfType<GameStateController>();
+                if (_instance == null)
                 {
                     // If no instance exists in the scene, create a new GameObject with the GameStateController component
                     GameObject singletonObject = new GameObject("GameStateController");
-                    instance = singletonObject.AddComponent<GameStateController>();
+                    _instance = singletonObject.AddComponent<GameStateController>();
                 }
             }
-            return instance;
+            return _instance;
         }
     }
 
     private void Awake()
     {
         // Ensure there is only one instance of GameStateController
-        if (instance != null && instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        _instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -57,54 +58,81 @@ public class GameStateController : MonoBehaviour
     private void InitializeGame()
     {
         // Initialize the game
-        currentState = GameState.Start;
+        _currentState = GameState.State00;
         UpdateUI();
     }
 
     public void Update()
     {
         // Game state logic
-        switch (currentState)
+        switch (_currentState)
         {
-            case GameState.Start:
+            case GameState.State01:
+                // Example: Press space to start the game
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     StartGame();
                 }
+                // end of this example
+                
+                // ====================================
+                
+                // Example: Do something else to change the game state
+                // ...
+                // end of this example
                 break;
-            case GameState.Playing:
+            
+            case GameState.State02:
+                // Example: Press P to pause the game
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     PauseGame();
                 }
-                // Gameplay logic here
+                // end of this example
+                
+                // ====================================
+                
+                // Example: Do something else to change the game state
+                // ...
+                // end of this example
                 break;
-            case GameState.GameOver:
+            
+            case GameState.State03:
+                // Example: Do something to change the game state
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     RestartGame();
                 }
+                // end of this example
+                
+                // ====================================
+                
+                // Example: Do something else to change the game state
+                // ...
+                // end of this example
                 break;
+            
         }
     }
 
-    public void StartGame()
+    // Game state functions
+    private void StartGame()
     {
-        currentState = GameState.Playing;
+        _currentState = GameState.State01;
         UpdateUI();
         // Start gameplay logic, spawn enemies, etc.
     }
 
-    public void PauseGame()
+    private void PauseGame()
     {
-        currentState = GameState.Paused;
+        _currentState = GameState.State02;
         UpdateUI();
         // Pause gameplay logic, show pause menu, etc.
     }
 
-    public void RestartGame()
+    private void RestartGame()
     {
-        currentState = GameState.Start;
+        _currentState = GameState.State03;
         InitializeGame();
         // Reset game state, scores, and other variables
     }
@@ -112,6 +140,6 @@ public class GameStateController : MonoBehaviour
     private void UpdateUI()
     {
         // Update UI to reflect the current game state
-        gameStateText.text = "Game State: " + currentState.ToString();
+        gameStateText.text = "Game State: " + _currentState.ToString();
     }
 }
