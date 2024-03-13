@@ -4,21 +4,21 @@ using System;
 public class EventManager : MonoBehaviour
 {
     // use singleton to create an envent manager
-    private static EventManager instance;
+    private static EventManager _instance;
     public static EventManager Instance
     {
         get
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = FindObjectOfType<EventManager>();
-                if (instance == null)
+                _instance = FindObjectOfType<EventManager>();
+                if (_instance == null)
                 {
                     GameObject eventManagerObject = new GameObject("EventManager");
-                    instance = eventManagerObject.AddComponent<EventManager>();
+                    _instance = eventManagerObject.AddComponent<EventManager>();
                 }
             }
-            return instance;
+            return _instance;
         }
     }
 

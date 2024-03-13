@@ -17,7 +17,6 @@ public class GameStateController : MonoBehaviour
 
     // ===== Singleton instance ===== //
     private static GameStateController _instance;
-
     public static GameStateController Instance
     {
         get
